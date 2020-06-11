@@ -13,6 +13,8 @@ class CreateProfesseursTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('professeurs', function (Blueprint $table) {
             $table->id();
 
@@ -22,6 +24,17 @@ class CreateProfesseursTable extends Migration
             $table->string('email',100)->Unique();
 
             $table->timestamps();
+
+            //Relation Professeur/Specialite
+            $table->unsignedBigInteger('specialite_id');
+
+            //déclarer la contrainte d'intégrité référentielle(Foreign key)
+            $table->foreign('specialite_id')
+                ->references('id')
+                ->on('specialites')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+
         });
     }
 

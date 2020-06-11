@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        //créer 2 nouveaux professeurs
+        //créer deux nouvelles spécialités
     }
 }

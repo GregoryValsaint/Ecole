@@ -15,6 +15,9 @@ class ProfesseurController extends Controller
     public function index()
     {
         //
+        //1. Sélectionner les clients
+        $listeProfesseur = Professeur::all();
+        dd($listeProfesseur);
     }
 
     /**
@@ -24,10 +27,7 @@ class ProfesseurController extends Controller
      */
     public function create()
     {
-        //
-        //1. Sélectionner les clients
-        $listeProfesseur = Professeur::all();
-        dd($listeProfesseur);
+        
     }
 
     /**
