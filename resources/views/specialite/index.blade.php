@@ -13,7 +13,7 @@
                 <br/>Professeurs:
                      @if (!$spe->professeurs->isEmpty())
                             @foreach($spe->professeurs as $prof)
-                                <li><a href="#">{{$prof->nom}}  {{$prof->prenom}} ({{$prof->email}})</a></li><br/>  
+                                <li><a href="{{route('professeur.show', $prof->id)}}">{{$prof->nom}}  {{$prof->prenom}} ({{$prof->email}})</a></li><br/>  
                             @endforeach
                     @else
                         <li>Aucun prof</li><br/><br/> 
