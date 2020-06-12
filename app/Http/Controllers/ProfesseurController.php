@@ -16,8 +16,12 @@ class ProfesseurController extends Controller
     {
         //
         //1. Sélectionner les clients
-        $listeProfesseur = Professeur::all();
-        dd($listeProfesseur);
+        //$listeProfesseur = Professeur::all();
+        
+        $professeurs = Professeur::query()->paginate(15);
+        //dd($professeurs);
+        return View('professeur.index', compact('professeurs'));
+        
     }
 
     /**

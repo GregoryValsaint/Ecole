@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/professeur', 'ProfesseurController@index');
+Route::resource('/professeur', 'ProfesseurController');
 
-Route::get('/specialite', 'SpecialiteController@index');
+Route::resource('/specialite', 'SpecialiteController'); 

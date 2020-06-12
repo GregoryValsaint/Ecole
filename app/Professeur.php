@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Professeur extends Model
 {
     //désigner les champs modifiables
-    protected $fillable = ['nom', 'prenom', 'telephone', 'email'];
+    protected $fillable = ['nom', 'prenom', 'telephone', 'email', 'specialite_id'];
 
     //fonction pour récupérer la liste des commandes
     public function specialite(){

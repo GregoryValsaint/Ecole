@@ -10,7 +10,7 @@ class Specialite extends Model
     protected $fillable = ['code', 'libelle'];
 
     //fonction pour récupérer la liste des commandes
-    public function specialite(){
+    public function professeurs(){
         return $this->hasMany(Professeur::class);
     }
 }

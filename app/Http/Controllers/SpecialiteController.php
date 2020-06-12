@@ -16,9 +16,10 @@ class SpecialiteController extends Controller
     {
         //
         //1. Sélectionner les clients
-        $listeSpecialite = Specialite::all();
-
-        dd($listeSpecialite);
+        //$listeSpecialite = Specialite::all();
+        $specialites = Specialite::query()->paginate(15);
+        return View('specialite.index', compact('specialites'));
+        //dd($listeSpecialite);
     }
 
     /**
