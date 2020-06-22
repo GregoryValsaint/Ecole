@@ -74,7 +74,7 @@ class ProfesseurController extends Controller
     public function edit($id)
     {
         $professeur = Professeur::find($id);
-        return view('professeur.edit', compact('professeur'));
+        return view('professeur.edit')->with($professeur);
     }
 
     /**
@@ -86,20 +86,12 @@ class ProfesseurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $professeur = Professeur::update($request->all(),[
             'nom'=>'required',
             'prenom'=>'required',
             'telephone'=>'required',
-            'email'=>'required']);
-
-        $professeur = new Professeur([
-            'nom'=>$request->get('nom'),
-            'prenom'=>$request->get('prenom'),
-            'telephone'=>$request->get('telephone'),
-            'email'=>$request->get('email')
-        ]);
-
-        $professeur->save();
+            'email'=>'required',
+            'specialite_id'=>'required']);
         return redirect('/professeur')->with('success', 'Professeur modifié');
     }
 

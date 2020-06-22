@@ -3,17 +3,7 @@
 @section('contenu')
 
 <div>
-  <h1 class="display-3">Ajouter un nouveau professeur</h1>
-  @if ($errors->any())
-    <div class="alert alert-danger">
-      <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-      </ul>
-    </div>
-    <br />
-  @endif
+  
     <form method="post" action="{{route('professeur.store')}}">
     @csrf
     <div class="form-row">
@@ -57,10 +47,8 @@
             <label for="specialite_id">Spécialité</label>
             <select class="custom-select is-invalid" id="specialite_id" name="specialite_id" required>
             @if($specialites != null)
-            @foreach($specialites as $spe)
-            <option selected disabled value="{{ $spe->id }}">Sélectionner...</option>
-            
-            <option>{{$spe->libelle}}</option>
+            @foreach($specialites as $spe)            
+            <option value="{{ $spe->id }}">{{$spe->libelle}}</option>
                 @endforeach
             @endif
             </select>

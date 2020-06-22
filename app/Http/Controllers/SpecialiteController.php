@@ -82,16 +82,11 @@ class SpecialiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'code'=>'required',
-            'libelle'=>'required']);
-
-        $specialite = new Specialite([
-            'code'=>$request->get('code'),
-            'libelle'=>$request->get('libelle')
+        $specialite = Specialite::update($request->all(), 
+            ['code'=>'required',
+            'libelle'=>'required'
         ]);
 
-        $professeur->save();
         return redirect('/specialite')->with('success', 'Spécialité enregistré');
     }
 

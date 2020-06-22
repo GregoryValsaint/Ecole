@@ -8,7 +8,8 @@
             @foreach($professeurs as $prof)
             
                 <li>{{$prof->nom}}  {{$prof->prenom}} ({{$prof->email}})</li><br/>
-                               
+                <a href="{{ route('professeur.edit',$prof->id)}}"
+                class="btn btn-primary">Modifier</a>               
                  
                 
             
