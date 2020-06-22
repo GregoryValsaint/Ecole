@@ -29,7 +29,7 @@ class SpecialiteController extends Controller
      */
     public function create()
     {
-        //
+        return View('specialite.create');
     }
 
     /**
@@ -40,7 +40,13 @@ class SpecialiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $specialite = Specialite::create($request->all(), 
+            ['code'=>'required',
+            'libelle'=>'required'
+        ]);
+
+        return redirect('/specialite')->with('success', 'Spécialité enregistré');
     }
 
     /**
@@ -51,7 +57,8 @@ class SpecialiteController extends Controller
      */
     public function show($id)
     {
-        //
+        $specialite = Specialite::find($id);
+        return View('specialite.show', compact('specialites'));
     }
 
     /**
@@ -62,7 +69,8 @@ class SpecialiteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $specialite = Specialite::find($id);
+        return View('specialite.edit', compact('specialites'));
     }
 
     /**
@@ -74,7 +82,17 @@ class SpecialiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'code'=>'required',
+            'libelle'=>'required']);
+
+        $specialite = new Specialite([
+            'code'=>$request->get('code'),
+            'libelle'=>$request->get('libelle')
+        ]);
+
+        $professeur->save();
+        return redirect('/specialite')->with('success', 'Spécialité enregistré');
     }
 
     /**
@@ -85,6 +103,9 @@ class SpecialiteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $specialite = Specialite::find($id);
+        $specialite->delete();
+
+        return redirect('/specialite')->with('success', 'Spécialité supprimé');
     }
 }

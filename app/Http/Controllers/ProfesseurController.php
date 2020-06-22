@@ -31,7 +31,7 @@ class ProfesseurController extends Controller
      */
     public function create()
     {
-        
+        return View('professeur.create');
     }
 
     /**
@@ -42,7 +42,15 @@ class ProfesseurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $professeur = Professeur::create($request->all(),[
+            'nom'=>'required',
+            'prenom'=>'required',
+            'telephone'=>'required',
+            'email'=>'required',
+            'specialite_id'=>'required']);
+
+       
+        return redirect('/professeur')->with('success', 'Professeur enregistré');
     }
 
     /**
@@ -53,7 +61,8 @@ class ProfesseurController extends Controller
      */
     public function show($id)
     {
-        //
+        $professeur = Professeur::find($id);
+        return view('professeur.show', compact('professeur'));
     }
 
     /**
@@ -64,7 +73,8 @@ class ProfesseurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $professeur = Professeur::find($id);
+        return view('professeur.edit', compact('professeur'));
     }
 
     /**
@@ -76,7 +86,21 @@ class ProfesseurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nom'=>'required',
+            'prenom'=>'required',
+            'telephone'=>'required',
+            'email'=>'required']);
+
+        $professeur = new Professeur([
+            'nom'=>$request->get('nom'),
+            'prenom'=>$request->get('prenom'),
+            'telephone'=>$request->get('telephone'),
+            'email'=>$request->get('email')
+        ]);
+
+        $professeur->save();
+        return redirect('/professeur')->with('success', 'Professeur modifié');
     }
 
     /**
@@ -87,6 +111,9 @@ class ProfesseurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $professeur = Professeur::find($id);
+        $professeur->delete();
+
+        return redirect('/professeur')->with('success', 'Professeur supprimé');
     }
 }
