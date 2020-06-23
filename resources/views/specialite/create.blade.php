@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('contenu')
-<div>
+<div id="add-spe" class="container-fluid">
   
 
   <form method="post" action="{{route('specialite.store')}}">
@@ -9,28 +9,18 @@
     <div class="form-row">
       <div class="col-md-3 mb-3">
         <label for="code">Code</label>
-        <input type="text" class="form-control is-invalid" id="code" name="code" required>
-        <div class="invalid-feedback">
-          Entrez un code.
-        </div>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
+        <input type="text" class="form-control" id="code" name="code" required>
+        
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-3 mb-3">
         <label for="libelle">Libellé</label>
-        <input type="text" class="form-control is-invalid" id="libelle" name="libelle" required>
-        <div class="invalid-feedback">
-          Choisissez un libellé.
-        </div>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
+        <input type="text" class="form-control" id="libelle" name="libelle" value="" required>
+        
       </div>
     </div>
-    <button class="btn btn-primary" type="submit">Ajouter</button>
+    <button class="btn btn-dark" type="submit">Ajouter</button>
   </form>
   @endsection
 </div>

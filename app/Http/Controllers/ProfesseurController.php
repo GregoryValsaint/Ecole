@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Professeur;
+use App\Specialite;
 
 class ProfesseurController extends Controller
 {
@@ -31,7 +32,8 @@ class ProfesseurController extends Controller
      */
     public function create()
     {
-        return View('professeur.create');
+        $specialites = Specialite::all();
+        return View('professeur.create', compact('specialites'));
     }
 
     /**
@@ -50,7 +52,7 @@ class ProfesseurController extends Controller
             'specialite_id'=>'required']);
 
        
-        return redirect('/professeur')->with('success', 'Professeur enregistré');
+        return redirect('professeur')->with('success', 'Professeur enregistré');
     }
 
     /**
@@ -73,8 +75,9 @@ class ProfesseurController extends Controller
      */
     public function edit($id)
     {
+        $specialites = Specialite::all();
         $professeur = Professeur::find($id);
-        return view('professeur.edit')->with($professeur);
+        return view('professeur.edit', compact('professeur','specialites'));
     }
 
     /**
@@ -84,15 +87,14 @@ class ProfesseurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Professeur $professeur)
     {
-        $professeur = Professeur::update($request->all(),[
-            'nom'=>'required',
-            'prenom'=>'required',
-            'telephone'=>'required',
-            'email'=>'required',
-            'specialite_id'=>'required']);
-        return redirect('/professeur')->with('success', 'Professeur modifié');
+        $specialites = Specialite::all();
+        $professeur->update($request->all(),[
+            'specialite_id'=>'required',]);
+
+        $success = 'Professeur modifié';
+        return view('professeur.edit', compact('professeur','success','specialites'));
     }
 
     /**
@@ -101,11 +103,12 @@ class ProfesseurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Professeur $professeur)
     {
-        $professeur = Professeur::find($id);
+        
         $professeur->delete();
+        
 
-        return redirect('/professeur')->with('success', 'Professeur supprimé');
+        return redirect(route('specialite.index'))->with('info', 'Professeur supprimé avec succès');
     }
 }

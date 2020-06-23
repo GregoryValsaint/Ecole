@@ -18,8 +18,8 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color:#eea15a;
-                color: #fff;
+                background-color:#f7eccd;
+                color: #343a40;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -50,12 +50,17 @@
                 text-align: center;
             }
 
-            .title {
+            .title > a{
                 font-size: 84px;
+                text-decoration: none;
             }
 
-            .links > a {
-                color: #fff;
+            .title > a:hover {
+                color: #58547a;
+            }
+
+            a {
+                color: #343a40;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -64,22 +69,86 @@
                 text-transform: uppercase;
             }
 
+            .links {
+                margin-bottom: 50px;
+                
+            }
+
+            a:hover > .nav-link {
+                color: #58547a;
+                font-size: 1em;
+            }
+
+            a > .nav-links{
+                color: #343a40;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .speCss{
+                color: #fff;
+                text-decoration: none;
+            }
+
+            .add-spe {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            ul > a:hover > .speCss {
+                color: #343a40;
+                text-decoration: none;
+            }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .bio-prof{
+                font-size: 18px;
+            }
+
+            .form-row{
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+
+
+            
+
+            
         </style>
         
         <div class="content">
             <div class="title m-b-md">
-                <a href="">Ecole HOC</a> 
+                <a href="{{'/'}}">Ecole HOC</a> 
             </div>
-            @yield('contenu')
+           
             <div class="links">
-                <a href="{{route('specialite.index')}}">Spécialités</a>
-                <a href="{{route('professeur.index')}}">Professeurs</a>
-                <a href="{{route('specialite.create')}}">Ajouter une spécialité</a>
-                <a href="{{route('professeur.create')}}">Ajouter un professeur</a>
-            </div> 
+
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{route('specialite.index')}}">Spécialités</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('professeur.index')}}">Professeurs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('specialite.create')}}">Ajouter une spécialité</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('professeur.create')}}">Ajouter un professeur</a>
+                </li>
+            </ul>
+            </div>
+            @yield('contenu') 
                    
         </div>
 
